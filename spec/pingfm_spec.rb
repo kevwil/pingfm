@@ -32,8 +32,8 @@ describe Pingfm::Client, "with expected results" do
 
     # mock the http call
     http_resp = mock('response')
-    http_resp.should_receive(:body).and_return(@response)
-    Net::HTTP.should_receive(:post_form).with(uri, @params).and_return(http_resp)
+    http_resp.expects(:body).returns(@response)
+    Net::HTTP.expects(:post_form).with(uri, @params).returns(http_resp)
 
     # call and verify
     result = @client.validate
@@ -49,8 +49,8 @@ describe Pingfm::Client, "with expected results" do
 
     # mock the http call
     http_resp = mock('response')
-    http_resp.should_receive(:body).and_return(@response)
-    Net::HTTP.should_receive(:post_form).with(uri, @params).and_return(http_resp)
+    http_resp.expects(:body).returns(@response)
+    Net::HTTP.expects(:post_form).with(uri, @params).returns(http_resp)
 
     # call and verify
     result = @client.services
@@ -69,8 +69,8 @@ describe Pingfm::Client, "with expected results" do
 
     # mock the http call
     http_resp = mock('response')
-    http_resp.should_receive(:body).and_return(@response)
-    Net::HTTP.should_receive(:post_form).with(uri, @params).and_return(http_resp)
+    http_resp.expects(:body).returns(@response)
+    Net::HTTP.expects(:post_form).with(uri, @params).returns(http_resp)
 
     # call and verify
     result = @client.system_services
@@ -90,8 +90,8 @@ describe Pingfm::Client, "with expected results" do
 
     # mock the http call
     http_resp = mock('response')
-    http_resp.should_receive(:body).and_return(@response)
-    Net::HTTP.should_receive(:post_form).with(uri, @params).and_return(http_resp)
+    http_resp.expects(:body).returns(@response)
+    Net::HTTP.expects(:post_form).with(uri, @params).returns(http_resp)
 
     # call and verify
     result = @client.triggers
@@ -112,8 +112,8 @@ describe Pingfm::Client, "with expected results" do
 
     # mock the http call
     http_resp = mock('response')
-    http_resp.should_receive(:body).and_return(@response)
-    Net::HTTP.should_receive(:post_form).with(uri, @params).and_return(http_resp)
+    http_resp.expects(:body).returns(@response)
+    Net::HTTP.expects(:post_form).with(uri, @params).returns(http_resp)
 
     # call and verify
     result = @client.latest(5)
@@ -137,8 +137,8 @@ describe Pingfm::Client, "with expected results" do
 
     # mock the http call
     http_resp = mock('response')
-    http_resp.should_receive(:body).and_return(@response)
-    Net::HTTP.should_receive(:post_form).with(uri, @params).and_return(http_resp)
+    http_resp.expects(:body).returns(@response)
+    Net::HTTP.expects(:post_form).with(uri, @params).returns(http_resp)
 
     # call and verify
     result = @client.post('foo')
@@ -156,8 +156,8 @@ describe Pingfm::Client, "with expected results" do
 
     # mock the http call
     http_resp = mock('response')
-    http_resp.should_receive(:body).and_return(@response)
-    Net::HTTP.should_receive(:post_form).with(uri, @params).and_return(http_resp)
+    http_resp.expects(:body).returns(@response)
+    Net::HTTP.expects(:post_form).with(uri, @params).returns(http_resp)
 
     # call and verify
     result = @client.tpost('foo','twt')
@@ -181,8 +181,8 @@ describe Pingfm::Client, "with error messages" do
 
     # mock the http call
     http_resp = mock('response')
-    http_resp.should_receive(:body).and_return(@response)
-    Net::HTTP.should_receive(:post_form).with(uri, @params).and_return(http_resp)
+    http_resp.expects(:body).returns(@response)
+    Net::HTTP.expects(:post_form).with(uri, @params).returns(http_resp)
 
     # call and verify
     result = @client.validate
@@ -199,8 +199,8 @@ describe Pingfm::Client, "with error messages" do
 
     # mock the http call
     http_resp = mock('response')
-    http_resp.should_receive(:body).and_return(@response)
-    Net::HTTP.should_receive(:post_form).with(uri, @params).and_return(http_resp)
+    http_resp.expects(:body).returns(@response)
+    Net::HTTP.expects(:post_form).with(uri, @params).returns(http_resp)
 
     # call and verify
     result = @client.system_services
@@ -217,8 +217,8 @@ describe Pingfm::Client, "with error messages" do
 
     # mock the http call
     http_resp = mock('response')
-    http_resp.should_receive(:body).and_return(@response)
-    Net::HTTP.should_receive(:post_form).with(uri, @params).and_return(http_resp)
+    http_resp.expects(:body).returns(@response)
+    Net::HTTP.expects(:post_form).with(uri, @params).returns(http_resp)
 
     # call and verify
     result = @client.services
@@ -235,8 +235,8 @@ describe Pingfm::Client, "with error messages" do
 
     # mock the http call
     http_resp = mock('response')
-    http_resp.should_receive(:body).and_return(@response)
-    Net::HTTP.should_receive(:post_form).with(uri, @params).and_return(http_resp)
+    http_resp.expects(:body).returns(@response)
+    Net::HTTP.expects(:post_form).with(uri, @params).returns(http_resp)
 
     # call and verify
     result = @client.triggers
@@ -253,9 +253,9 @@ describe Pingfm::Client, "with error messages" do
 
     # mock the http call
     http_resp = mock('response')
-    http_resp.should_receive(:body).and_return(@response)
+    http_resp.expects(:body).returns(@response)
     @params.merge!('order' => 'DESC', 'limit' => 25)
-    Net::HTTP.should_receive(:post_form).with(uri, @params).and_return(http_resp)
+    Net::HTTP.expects(:post_form).with(uri, @params).returns(http_resp)
 
     # call and verify
     result = @client.latest
@@ -272,10 +272,10 @@ describe Pingfm::Client, "with error messages" do
 
     # mock the http call
     http_resp = mock('response')
-    http_resp.should_receive(:body).and_return(@response)
+    http_resp.expects(:body).returns(@response)
     @params.merge!({'post_method' => 'default', 'title' => '',
                     'service' => '', 'body' => 'test message', 'debug' => 0})
-    Net::HTTP.should_receive(:post_form).with(uri, @params).and_return(http_resp)
+    Net::HTTP.expects(:post_form).with(uri, @params).returns(http_resp)
 
     # call and verify
     result = @client.post('test message')
@@ -292,10 +292,10 @@ describe Pingfm::Client, "with error messages" do
 
     # mock the http call
     http_resp = mock('response')
-    http_resp.should_receive(:body).and_return(@response)
+    http_resp.expects(:body).returns(@response)
     @params.merge!({'title' => '', 'body' => 'test message',
                     'trigger' => '@trigger', 'debug' => 0})
-    Net::HTTP.should_receive(:post_form).with(uri, @params).and_return(http_resp)
+    Net::HTTP.expects(:post_form).with(uri, @params).returns(http_resp)
 
     # call and verify
     result = @client.tpost('test message', '@trigger')
